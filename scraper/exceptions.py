@@ -32,3 +32,7 @@ class FilterError(ScraperError):
 
 class JobAlreadyRunningError(ScraperError):
     """Another scrape job is already active."""
+
+
+class PaymentPageError(ScraperError):
+    """Payment page navigation or parsing failed."""

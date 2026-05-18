@@ -16,18 +16,22 @@ from models import PatientVisit, Treatment
 class VisitInput:
     """Plain data for creating/updating a visit."""
 
+    emr_visit_id: str
     no_rm: str
     nama: str
     tgl_lahir: date | None
     ruang: str
     tanggal_kunjungan: date
-    total_biaya: Decimal
+    cara_bayar: str = "UMUM"
+    total_biaya: Decimal = Decimal("0.00")
 
 
 @dataclass
 class TreatmentInput:
     nama_tindakan: str
     biaya: Decimal
+    kategori: str = "biasa"
+    tanggal: date | None = None
 
 
 async def upsert_visit(
@@ -36,32 +40,35 @@ async def upsert_visit(
     treatments: list[TreatmentInput],
     scrape_job_id: int | None = None,
 ) -> PatientVisit:
-    """Insert or update a visit by (no_rm, tanggal_kunjungan, ruang).
+    """Insert or update a visit by emr_visit_id.
 
     On update: replaces all treatments (delete-orphan via cascade).
     """
     stmt = (
         select(PatientVisit)
-        .where(
-            PatientVisit.no_rm == visit_data.no_rm,
-            PatientVisit.tanggal_kunjungan == visit_data.tanggal_kunjungan,
-            PatientVisit.ruang == visit_data.ruang,
-        )
+        .where(PatientVisit.emr_visit_id == visit_data.emr_visit_id)
         .options(selectinload(PatientVisit.treatments))
     )
     existing = (await session.execute(stmt)).scalar_one_or_none()
 
     if existing is None:
         visit = PatientVisit(
+            emr_visit_id=visit_data.emr_visit_id,
             no_rm=visit_data.no_rm,
             nama=visit_data.nama,
             tgl_lahir=visit_data.tgl_lahir,
             ruang=visit_data.ruang,
             tanggal_kunjungan=visit_data.tanggal_kunjungan,
+            cara_bayar=visit_data.cara_bayar,
             total_biaya=visit_data.total_biaya,
             scrape_job_id=scrape_job_id,
             treatments=[
-                Treatment(nama_tindakan=t.nama_tindakan, biaya=t.biaya)
+                Treatment(
+                    nama_tindakan=t.nama_tindakan,
+                    biaya=t.biaya,
+                    kategori=t.kategori,
+                    tanggal=t.tanggal,
+                )
                 for t in treatments
             ],
         )
@@ -69,13 +76,21 @@ async def upsert_visit(
     else:
         existing.nama = visit_data.nama
         existing.tgl_lahir = visit_data.tgl_lahir
+        existing.ruang = visit_data.ruang
+        existing.tanggal_kunjungan = visit_data.tanggal_kunjungan
+        existing.cara_bayar = visit_data.cara_bayar
         existing.total_biaya = visit_data.total_biaya
         existing.scrape_job_id = scrape_job_id
         # Replace treatments via cascade delete-orphan
         existing.treatments.clear()
         for t in treatments:
             existing.treatments.append(
-                Treatment(nama_tindakan=t.nama_tindakan, biaya=t.biaya)
+                Treatment(
+                    nama_tindakan=t.nama_tindakan,
+                    biaya=t.biaya,
+                    kategori=t.kategori,
+                    tanggal=t.tanggal,
+                )
             )
         visit = existing
 
@@ -89,6 +104,7 @@ async def list_visits(
     tanggal_from: date,
     tanggal_to: date,
     ruang: str | None = None,
+    cara_bayar: str | None = None,
 ) -> list[PatientVisit]:
     stmt = (
         select(PatientVisit)
@@ -101,5 +117,7 @@ async def list_visits(
     )
     if ruang:
         stmt = stmt.where(PatientVisit.ruang == ruang)
+    if cara_bayar:
+        stmt = stmt.where(PatientVisit.cara_bayar == cara_bayar)
     result = await session.execute(stmt)
     return list(result.scalars().all())

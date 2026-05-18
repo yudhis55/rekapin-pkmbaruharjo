@@ -11,6 +11,9 @@ DateMode = Literal["single", "range"]
 EventType = Literal["log", "progress", "row", "done", "error", "cancelled"]
 
 
+CaraBayarFilter = Literal["UMUM", "BPJS", "SEMUA"]
+
+
 class ScrapeRequest(BaseModel):
     """Request to start a scrape job."""
 
@@ -18,6 +21,7 @@ class ScrapeRequest(BaseModel):
     tanggal_from: date
     tanggal_to: date | None = None
     ruang: str | None = None  # None means all ruang
+    cara_bayar: CaraBayarFilter = "UMUM"
 
     @model_validator(mode="after")
     def validate_dates(self) -> "ScrapeRequest":
@@ -44,6 +48,8 @@ class TreatmentOut(BaseModel):
 
     nama_tindakan: str
     biaya: Decimal
+    kategori: str = "biasa"
+    tanggal: date | None = None
 
 
 class VisitOut(BaseModel):
@@ -58,6 +64,8 @@ class VisitOut(BaseModel):
     ruang: str
     tanggal_kunjungan: date
     total_biaya: Decimal
+    cara_bayar: str = "UMUM"
+    emr_visit_id: str = ""
     treatments: list[TreatmentOut] = Field(default_factory=list)
 
 

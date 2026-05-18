@@ -53,6 +53,7 @@ static/css/output.css
 
 # Sisyphus drafts
 .sisyphus/drafts/
+.sisyphus/
 
 # Exports
 exports/*.xlsx

@@ -86,3 +86,48 @@ session:
   csrf_token_name: "csrf_token_name"
   # CSRF token is per-form, included as hidden input in every form
   # Must be extracted fresh before each POST request
+
+# ============================================================
+# v2 Additions (pagination + payment page)
+# Discovered: 2026-05-18 via discovery/capture_v2_flow.py
+# ============================================================
+
+daftar_v2:
+  # Pagination container (table below patient table)
+  pagination_container: "table[align='left'][width='25%']"
+  # Navigation forms - each is a form with hidden input name='halaman'
+  pagination_first_form: "table[align='left'][width='25%'] form:has(.fa-fast-backward)"
+  pagination_prev_form: "table[align='left'][width='25%'] form:has(.fa-backward):not(:has(.fa-fast-backward))"
+  pagination_next_form: "table[align='left'][width='25%'] form:has(.fa-forward):not(:has(.fa-fast-forward))"
+  pagination_last_form: "table[align='left'][width='25%'] form:has(.fa-fast-forward)"
+  # Page indicator: "current/total" text in 3rd td
+  pagination_indicator: "table[align='left'][width='25%'] td:nth-child(3)"
+  # Per-visit Bayar button (form POST to /daf/px/20/1/0/{visit_id})
+  visit_bayar_form: "form[action*='/daf/px/20/1/']"
+  visit_bayar_button: "form[action*='/daf/px/20/1/'] button"
+  # Cara Bayar text in nested kunjungan row (2nd column of nested table)
+  # Each nested row: Ruangan | Cara Bayar | Tgl Masuk | Batal
+  visit_cara_bayar_cell: "td:nth-child(2)"
+
+payment:
+  # URL pattern when on payment page
+  url_pattern: "**/daf/px/20/1/0/**"
+  # Patient info table (Nomor RM, Nama, Alamat, Tgl Masuk)
+  patient_info_table: "table:nth-of-type(2)"
+  # Biaya summary table (Biaya, Terbayar, Sisa)
+  biaya_summary_table: "table:has(td:has-text('Biaya')):has(td:has-text('Terbayar'))"
+  # Tindakan wrapper: table.table-sm (no border) containing two side-by-side
+  # inner tables (table.table-sm.table-bordered) for biasa (left) and lab (right).
+  # The inner tables have header row tr.table-info with: Tanggal | Nama Tindakan | Total | . | .
+  # Sub-header rows contain category (e.g. "POLI UMUM") + "Tambah Jasa" button.
+  # Data rows have style="background-color:transparent" with 5 cells:
+  #   td1=date (font-size:10px) | td2=nama | td3=total | td4=X btn | td5=bayar btn
+  # There are 5 table.table-sm.table-bordered on page; tindakan ones have tr.table-info header
+  tindakan_table: "table.table-sm.table-bordered:has(tr.table-info)"
+  row: "tr"
+  cell_tanggal: "td:nth-child(1)"
+  cell_nama_tindakan: "td:nth-child(2)"
+  cell_total: "td:nth-child(3)"
+  # Selesai button: <button class="btn btn-warning"> inside form[action*='/daf/px/1/']
+  selesai_button: "form[action*='/daf/px/1/'] button.btn-warning"
+  csrf_token: "input[name='csrf_token_name']"

@@ -26,21 +26,26 @@ async def session() -> AsyncGenerator[AsyncSession, None]:
 
 async def test_visit_creation(session: AsyncSession) -> None:
     visit = PatientVisit(
+        emr_visit_id="20_1_0_12345",
         no_rm="RM001",
         nama="Pasien Sample",
         tgl_lahir=date(1990, 1, 1),
         ruang="Poli Umum",
         tanggal_kunjungan=date(2026, 5, 15),
+        cara_bayar="UMUM",
         total_biaya=Decimal("100000.00"),
     )
     session.add(visit)
     await session.commit()
     assert visit.id is not None
     assert visit.created_at is not None
+    assert visit.emr_visit_id == "20_1_0_12345"
+    assert visit.cara_bayar == "UMUM"
 
 
 async def test_visit_treatment_cascade(session: AsyncSession) -> None:
     visit = PatientVisit(
+        emr_visit_id="20_1_0_99999",
         no_rm="RM002", nama="X", ruang="Lab", tanggal_kunjungan=date(2026, 5, 15),
         treatments=[
             Treatment(nama_tindakan="Cek Darah", biaya=Decimal("50000.00")),
@@ -61,19 +66,45 @@ async def test_visit_treatment_cascade(session: AsyncSession) -> None:
     assert result.scalars().all() == []
 
 
-async def test_visit_unique_constraint(session: AsyncSession) -> None:
+async def test_visit_emr_visit_id_unique(session: AsyncSession) -> None:
     v1 = PatientVisit(
+        emr_visit_id="20_1_0_12345",
         no_rm="RM003", nama="A", ruang="Poli Umum", tanggal_kunjungan=date(2026, 5, 15),
     )
     session.add(v1)
     await session.commit()
 
     v2 = PatientVisit(
-        no_rm="RM003", nama="A again", ruang="Poli Umum", tanggal_kunjungan=date(2026, 5, 15),
+        emr_visit_id="20_1_0_12345",
+        no_rm="RM004", nama="B", ruang="Lab", tanggal_kunjungan=date(2026, 5, 16),
     )
     session.add(v2)
     with pytest.raises(IntegrityError):
         await session.commit()
+
+
+async def test_visit_has_cara_bayar(session: AsyncSession) -> None:
+    visit = PatientVisit(
+        emr_visit_id="20_1_0_67890",
+        no_rm="RM005", nama="C", ruang="Poli Umum", tanggal_kunjungan=date(2026, 5, 15),
+        cara_bayar="BPJS",
+    )
+    session.add(visit)
+    await session.commit()
+    assert visit.cara_bayar == "BPJS"
+
+
+async def test_treatment_has_kategori(session: AsyncSession) -> None:
+    visit = PatientVisit(
+        emr_visit_id="20_1_0_11111",
+        no_rm="RM006", nama="D", ruang="Lab", tanggal_kunjungan=date(2026, 5, 15),
+        treatments=[
+            Treatment(nama_tindakan="Tes Lab", biaya=Decimal("75000.00"), kategori="lab"),
+        ],
+    )
+    session.add(visit)
+    await session.commit()
+    assert visit.treatments[0].kategori == "lab"
 
 
 async def test_recap_unique_per_date(session: AsyncSession) -> None:

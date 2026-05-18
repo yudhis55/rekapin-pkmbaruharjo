@@ -43,7 +43,8 @@ from scraper.exceptions import (
 from scraper.extract import extract_visits
 from scraper.filter import apply_filter
 from scraper.login import login as scraper_login
-from scraper.navigation import go_to_pendaftaran_induk
+from scraper.navigation import go_to_pendaftaran_induk, is_logged_in
+from scraper.payment import extract_payment_details
 from scraper.types import VisitData
 
 logger = logging.getLogger(__name__)
@@ -69,27 +70,50 @@ async def _persist_visits(
     visits: list[VisitData],
     job_id: int,
     tanggal: date,
+    payment_data: dict[str, tuple] | None = None,
 ) -> int:
     """Upsert visits + recompute recap. Returns count of visits persisted."""
     sm = get_sessionmaker()
     async with sm() as session:
         for v in visits:
+            treatments_list: list[visit_repo.TreatmentInput] = []
+            total_biaya = v.total_biaya
+
+            if payment_data and v.emr_visit_id in payment_data:
+                raw_treatments, total_biaya = payment_data[v.emr_visit_id]
+                treatments_list = [
+                    visit_repo.TreatmentInput(
+                        nama_tindakan=t.nama_tindakan,
+                        biaya=t.biaya,
+                        kategori=t.kategori,
+                        tanggal=t.tanggal,
+                    )
+                    for t in raw_treatments
+                ]
+            else:
+                treatments_list = [
+                    visit_repo.TreatmentInput(
+                        nama_tindakan=t.nama_tindakan,
+                        biaya=t.biaya,
+                        kategori=t.kategori,
+                        tanggal=t.tanggal,
+                    )
+                    for t in v.treatments
+                ]
+
             await visit_repo.upsert_visit(
                 session,
                 visit_repo.VisitInput(
+                    emr_visit_id=v.emr_visit_id,
                     no_rm=v.no_rm,
                     nama=v.nama,
                     tgl_lahir=v.tgl_lahir,
                     ruang=v.ruang,
                     tanggal_kunjungan=v.tanggal_kunjungan,
-                    total_biaya=v.total_biaya,
+                    cara_bayar=v.cara_bayar,
+                    total_biaya=total_biaya,
                 ),
-                [
-                    visit_repo.TreatmentInput(
-                        nama_tindakan=t.nama_tindakan, biaya=t.biaya
-                    )
-                    for t in v.treatments
-                ],
+                treatments_list,
                 scrape_job_id=job_id,
             )
         await job_repo.increment_visit_count(session, job_id, by=len(visits))
@@ -101,10 +125,13 @@ async def _scrape_one_date(
     job_id: int,
     tanggal: date,
     ruang: str | None,
+    cara_bayar: str = "UMUM",
     *,
     retry_on_session_expired: bool = True,
 ) -> int:
     """Scrape a single date. Returns visits count."""
+    import random
+
     settings = get_settings()
     selectors = load_selectors()
 
@@ -142,10 +169,56 @@ async def _scrape_one_date(
             )
             await _publish(job_id, "log", message="sesi habis - retry login")
             return await _scrape_one_date(
-                job_id, tanggal, ruang, retry_on_session_expired=False,
+                job_id, tanggal, ruang, cara_bayar, retry_on_session_expired=False,
             )
 
-    persisted = await _persist_visits(visits, job_id, tanggal)
+        # Filter by cara_bayar
+        if cara_bayar != "SEMUA":
+            filtered_visits = [v for v in visits if v.cara_bayar == cara_bayar]
+        else:
+            filtered_visits = visits
+
+        await _publish(
+            job_id, "log",
+            message=f"filter {cara_bayar}: {len(filtered_visits)}/{len(visits)} kunjungan",
+        )
+
+        # Extract payment details for UMUM visits with bayar_url
+        umum_visits = [v for v in filtered_visits if v.cara_bayar == "UMUM" and v.bayar_url]
+        payment_data: dict[str, tuple] = {}
+
+        if umum_visits:
+            await _publish(
+                job_id, "log",
+                message=f"mengambil tindakan untuk {len(umum_visits)} kunjungan UMUM",
+            )
+
+            for idx, visit in enumerate(umum_visits):
+                if not await is_logged_in(page, selectors):
+                    raise SessionExpiredError("session expired during payment extraction")
+
+                await page.wait_for_timeout(random.randint(300, 800))
+
+                try:
+                    treatments, total_biaya = await extract_payment_details(
+                        page, selectors, visit.bayar_url,
+                    )
+                    payment_data[visit.emr_visit_id] = (treatments, total_biaya)
+                except Exception as exc:
+                    logger.warning(
+                        "orchestrator: payment failed for %s: %s",
+                        visit.emr_visit_id[:4] + "****", exc,
+                    )
+                    from decimal import Decimal as _Dec
+                    payment_data[visit.emr_visit_id] = ([], _Dec("0.00"))
+
+                await _publish(
+                    job_id, "progress",
+                    message=f"tindakan {idx + 1}/{len(umum_visits)}",
+                    current=idx + 1, total=len(umum_visits),
+                )
+
+    persisted = await _persist_visits(filtered_visits, job_id, tanggal, payment_data)
     await _publish(
         job_id, "log",
         message=f"tanggal {tanggal} selesai: {persisted} kunjungan disimpan",
@@ -170,7 +243,9 @@ async def run_scrape_job(job_id: int, request: ScrapeRequest) -> None:
         to_d = request.tanggal_to or request.tanggal_from
         for d in _date_iter(from_d, to_d):
             await _publish(job_id, "log", message=f"mulai tanggal {d}")
-            total_persisted += await _scrape_one_date(job_id, d, request.ruang)
+            total_persisted += await _scrape_one_date(
+                job_id, d, request.ruang, request.cara_bayar,
+            )
 
         async with sm() as session:
             await job_repo.update_job_status(session, job_id, JobStatus.DONE)

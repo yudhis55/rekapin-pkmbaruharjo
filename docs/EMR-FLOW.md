@@ -223,3 +223,67 @@ Every form POST requires a fresh CSRF token. Strategy:
 - Date format in the date input is `YYYY-MM-DD` but displayed dates are `DD-MM-YYYY HH:MM`
 - The "Sdh" (Sudah) in Batal column indicates visit is finalized
 - Debug toolbar (CI4) adds extra tables to the page — filter by class when scraping
+
+---
+
+## v2 Discoveries (2026-05-18)
+
+### Pagination
+
+**Location**: Below patient table, in `<table align="left" width="25%">`.
+
+**Structure**: 7 cells — First | Prev | Page indicator ("X/Y") | Page input | Go | Next | Last
+
+**Mechanism**: Each button is a `<form method="post">` with `<input name="halaman" value="N">`. Submit = full page reload.
+
+**Last page detection**: Parse indicator text "X/Y". If X == Y, we're at last page.
+
+**Observed**: 29 pages on 2026-05-18 (indicator showed "1/29").
+
+**Selectors**:
+- Container: `table[align='left'][width='25%']`
+- Next form: `form:has(.fa-forward):not(:has(.fa-fast-forward))`
+- Prev form: `form:has(.fa-backward):not(:has(.fa-fast-backward))`
+- First form: `form:has(.fa-fast-backward)`
+- Last form: `form:has(.fa-fast-forward)`
+- Indicator: `td:nth-child(3)` within container
+
+### Multiple Visits Per Patient Per Day
+
+Confirmed by user: 1 patient can have multiple visits on the same day. Each visit has its own Bayar button with unique visit_id in the form action URL.
+
+**Implication**: Use `emr_visit_id` (from `/daf/px/20/1/0/{id}`) as unique key, NOT (no_rm, tanggal, ruang).
+
+### Payment Page
+
+**Trigger**: Click Bayar button (form POST to `/daf/px/20/1/0/{visit_id}`).
+
+**URL**: `https://emrtrenggalek.my.id/daf/px/20/1/0/{visit_id}`
+
+**Observed example**: `/daf/px/20/1/0/4192206`
+
+**Page structure** (22 tables total, many from CI4 debug toolbar):
+1. Header table (PENDAFTARAN - PUSKESMAS BARUHARJO)
+2. Patient info table: Nomor RM | Nama pasien | Alamat | Tgl Masuk
+3. Biaya summary: Biaya | Terbayar | Sisa (e.g., 10,000 | 0 | 10,000)
+4. Rincian pembayaran table (Waktu | User | Total | Kuitansi | Hapus)
+5. Tindakan tables: **Tanggal | Nama Tindakan | Total**
+   - Grouped by ruangan (e.g., "POLI UMUM")
+   - Example row: `17-05-2026 19:02 | Pelayanan Rawat Jalan | 10,000`
+
+**Key selectors**:
+- Tindakan table: `table:has(td:has-text('Tanggal')):has(td:has-text('Nama Tindakan'))`
+- Biaya summary: `table:has(td:has-text('Biaya')):has(td:has-text('Terbayar'))`
+- Selesai button: `input[type='submit'][value='Selesai']`
+
+**Return**: Click "Selesai" button (input submit) to return to patient list at `/daf/px/1/1/0/0`.
+
+### Cara Bayar Column
+
+Located in the nested kunjungan table within each patient row. Structure per nested row:
+- Column 1: Ruangan (e.g., UGD, POLI UMUM) + "Pindah" button
+- Column 2: Cara Bayar (e.g., UMUM, BPJS) + "Bayar" button + "RM" button
+- Column 3: Tgl. Masuk (datetime)
+- Column 4: Batal (status: "Sdh" = sudah/done)
+
+**Selector for Cara Bayar**: `td:nth-child(2)` within the nested kunjungan table row.

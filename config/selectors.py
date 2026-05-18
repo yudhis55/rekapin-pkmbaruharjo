@@ -94,6 +94,39 @@ class SessionSelectors(BaseModel):
     csrf_token_name: str = "csrf_token_name"
 
 
+class DaftarV2Selectors(BaseModel):
+    """v2 additions: pagination + per-visit bayar button."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    pagination_container: str
+    pagination_first_form: str
+    pagination_prev_form: str
+    pagination_next_form: str
+    pagination_last_form: str
+    pagination_indicator: str
+    visit_bayar_form: str
+    visit_bayar_button: str
+    visit_cara_bayar_cell: str
+
+
+class PaymentSelectors(BaseModel):
+    """Selectors for payment page (/daf/px/20/1/0/{visit_id})."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    url_pattern: str
+    patient_info_table: str
+    biaya_summary_table: str
+    tindakan_table: str
+    row: str
+    cell_tanggal: str
+    cell_nama_tindakan: str
+    cell_total: str
+    selesai_button: str
+    csrf_token: str = "csrf_token_name"
+
+
 class Selectors(BaseModel):
     """Root selectors model."""
 
@@ -105,6 +138,8 @@ class Selectors(BaseModel):
     detail: DetailSelectors
     pagination: PaginationSelectors
     session: SessionSelectors
+    daftar_v2: DaftarV2Selectors
+    payment: PaymentSelectors
 
 
 _DEFAULT_PATH = Path(__file__).parent / "selectors.yaml"

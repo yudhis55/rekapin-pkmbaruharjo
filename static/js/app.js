@@ -110,6 +110,8 @@
         const mode = els.form.querySelector("input[name='mode']:checked").value;
         const ruang = els.ruang.value || null;
         const body = { mode: mode, ruang: ruang };
+        const cara_bayar = document.getElementById("cara_bayar").value;
+        body.cara_bayar = cara_bayar;
         if (mode === "single") {
             body.tanggal_from = document.getElementById("tanggal").value;
         } else {
@@ -219,12 +221,14 @@
 
     // ----- Visits table -----
     async function loadVisitsForRange(tanggal_from, tanggal_to, ruang) {
-        const params = new URLSearchParams({ tanggal_from: tanggal_from });
+        const params = new URLSearchParams({ tanggal_from });
         if (tanggal_to) params.set("tanggal_to", tanggal_to);
         if (ruang) params.set("ruang", ruang);
-        const r = await fetch("/api/visits?" + params.toString());
+        const cara_bayar = document.getElementById("cara_bayar")?.value;
+        if (cara_bayar && cara_bayar !== "SEMUA") params.set("cara_bayar", cara_bayar);
+        const r = await fetch(`/api/visits?${params}`);
         if (!r.ok) {
-            toast("Gagal memuat data kunjungan (" + r.status + ")", "error");
+            toast(`Gagal memuat data kunjungan (${r.status})`, "error");
             return;
         }
         const visits = await r.json();
@@ -247,21 +251,50 @@
 
     function renderVisits(visits) {
         if (!visits.length) {
-            els.visitsTbody.innerHTML =
-                '<tr><td colspan="6" class="text-center text-sm text-ink-400 py-12">' +
-                "Tidak ada kunjungan untuk filter ini." +
-                "</td></tr>";
+            els.visitsTbody.innerHTML = `
+                <tr><td colspan="8" class="text-center text-sm text-ink-400 py-12">
+                    Tidak ada kunjungan untuk filter ini.
+                </td></tr>`;
             return;
         }
-        const rows = visits.map(function (v) {
-            return "<tr>" +
-                '<td class="font-mono text-xs">' + escapeHtml(v.no_rm) + "</td>" +
-                "<td>" + escapeHtml(v.nama) + "</td>" +
-                "<td>" + formatDate(v.tgl_lahir) + "</td>" +
-                '<td><span class="badge-neutral">' + escapeHtml(v.ruang) + "</span></td>" +
-                "<td>" + formatDate(v.tanggal_kunjungan) + "</td>" +
-                '<td class="text-right font-medium">' + formatIDR(v.total_biaya) + "</td>" +
-                "</tr>";
+        const rows = visits.map((v) => {
+            // Tindakan column
+            let tindakanHtml = '<span class="text-ink-400 text-xs">—</span>';
+            if (v.treatments && v.treatments.length > 0) {
+                const items = v.treatments.map(t =>
+                    `<li class="flex justify-between gap-2 text-xs py-0.5">
+                        <span class="flex-1">${escapeHtml(t.nama_tindakan)}</span>
+                        <span class="badge-neutral text-xs">${escapeHtml(t.kategori || 'biasa')}</span>
+                        <span class="font-medium">${formatIDR(t.biaya)}</span>
+                    </li>`
+                ).join("");
+                tindakanHtml = `
+                    <details class="text-sm">
+                        <summary class="cursor-pointer text-primary-600 hover:text-primary-700 text-xs font-medium">
+                            ${v.treatments.length} tindakan
+                        </summary>
+                        <ul class="mt-1 space-y-0.5 pl-2 border-l-2 border-ink-100">
+                            ${items}
+                        </ul>
+                    </details>`;
+            } else if (v.cara_bayar === "UMUM") {
+                tindakanHtml = '<span class="text-ink-400 text-xs">Tidak ada tindakan</span>';
+            }
+
+            const cbClass = v.cara_bayar === "UMUM" ? "badge-success" : "badge-info";
+
+            return `
+                <tr>
+                    <td class="font-mono text-xs">${escapeHtml(v.no_rm)}</td>
+                    <td>${escapeHtml(v.nama)}</td>
+                    <td>${formatDate(v.tgl_lahir)}</td>
+                    <td><span class="badge-neutral">${escapeHtml(v.ruang)}</span></td>
+                    <td><span class="${cbClass}">${escapeHtml(v.cara_bayar || '')}</span></td>
+                    <td>${formatDate(v.tanggal_kunjungan)}</td>
+                    <td>${tindakanHtml}</td>
+                    <td class="text-right font-medium">${formatIDR(v.total_biaya)}</td>
+                </tr>
+            `;
         }).join("");
         els.visitsTbody.innerHTML = rows;
     }

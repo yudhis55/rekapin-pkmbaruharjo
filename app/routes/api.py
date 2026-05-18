@@ -30,6 +30,7 @@ async def list_visits_endpoint(
     tanggal_from: date,
     tanggal_to: Annotated[date | None, Query()] = None,
     ruang: Annotated[str | None, Query()] = None,
+    cara_bayar: Annotated[str | None, Query()] = None,
     session: AsyncSession = Depends(get_session),
 ) -> list[VisitOut]:
     if tanggal_to is None:
@@ -39,7 +40,7 @@ async def list_visits_endpoint(
     delta_days = (tanggal_to - tanggal_from).days
     if delta_days > 31:
         raise HTTPException(status_code=422, detail="Rentang tanggal max 31 hari")
-    visits = await visit_repo.list_visits(session, tanggal_from, tanggal_to, ruang)
+    visits = await visit_repo.list_visits(session, tanggal_from, tanggal_to, ruang, cara_bayar)
     return [VisitOut.model_validate(v) for v in visits]
 
 

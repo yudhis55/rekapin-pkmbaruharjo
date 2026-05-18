@@ -78,6 +78,8 @@ def _wait_for_job_status(client: TestClient, job_id: int, target: str, timeout: 
 
 
 def _make_visit(no_rm: str, ruang: str, tanggal: date) -> VisitData:
+    import hashlib
+    emr_id = hashlib.md5(f"{no_rm}_{ruang}_{tanggal}".encode()).hexdigest()[:12]
     return VisitData(
         no_rm=no_rm,
         nama=f"Sample {no_rm}",
@@ -86,6 +88,9 @@ def _make_visit(no_rm: str, ruang: str, tanggal: date) -> VisitData:
         tanggal_kunjungan=tanggal,
         total_biaya=Decimal("0.00"),
         treatments=tuple(),
+        emr_visit_id=emr_id,
+        cara_bayar="UMUM",
+        bayar_url=None,
     )
 
 

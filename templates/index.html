@@ -50,6 +50,17 @@
                 <p class="text-xs text-ink-400 mt-1">Pilih ruang spesifik atau biarkan kosong untuk semua ruang.</p>
             </div>
 
+            <!-- Cara Bayar -->
+            <div>
+                <label for="cara_bayar" class="label">Cara Bayar</label>
+                <select id="cara_bayar" name="cara_bayar" class="input">
+                    <option value="UMUM" selected>Umum</option>
+                    <option value="BPJS">BPJS</option>
+                    <option value="SEMUA">Semua</option>
+                </select>
+                <p class="text-xs text-ink-400 mt-1">Umum: ambil data tindakan &amp; biaya. BPJS/Semua: tanpa tindakan.</p>
+            </div>
+
             <!-- Buttons -->
             <div class="flex gap-3 pt-2">
                 <button type="submit" id="btn-start" class="btn-primary">
@@ -98,13 +109,15 @@
                         <th>Nama</th>
                         <th class="w-28">Tgl Lahir</th>
                         <th class="w-28">Ruang</th>
+                        <th class="w-24">Cara Bayar</th>
                         <th class="w-32">Tgl Kunjungan</th>
+                        <th>Tindakan</th>
                         <th class="w-32 text-right">Total Biaya</th>
                     </tr>
                 </thead>
                 <tbody id="visits-tbody">
                     <tr id="visits-empty">
-                        <td colspan="6" class="text-center text-sm text-ink-400 py-12">
+                        <td colspan="8" class="text-center text-sm text-ink-400 py-12">
                             Belum ada data. Klik <span class="font-medium text-ink-700">"Mulai Scraping"</span> untuk memulai.
                         </td>
                     </tr>

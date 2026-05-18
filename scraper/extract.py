@@ -4,13 +4,8 @@ The patient list page has each patient as a <tr> with a nested visit table
 in the last <td>. We extract identity + visit info inline. Tindakan/biaya
 extraction from detail pages is deferred to v2 (stub returns empty tuple).
 
-# v2: detail page extraction
-# To get tindakan + biaya, for each visit:
-#   1. Extract visit_id from form action (e.g., /rp/res/{visit_id}/0/0)
-#   2. POST to that URL with CSRF token from per-row form
-#   3. Parse tindakan table on result page
-#   4. Navigate back to patient list
-# This is significant complexity deferred to a future task.
+Pagination: The patient list may span multiple pages. We detect the page
+indicator (e.g. "1/3") and submit the next-page form to iterate all pages.
 """
 from __future__ import annotations
 
@@ -20,7 +15,8 @@ from collections.abc import Awaitable, Callable
 from datetime import date
 from decimal import Decimal
 
-from playwright.async_api import Locator, Page, TimeoutError as PlaywrightTimeoutError
+from playwright.async_api import Locator, Page
+from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 
 from config.selectors import Selectors
 from scraper.exceptions import SelectorNotFoundError, SessionExpiredError
@@ -54,6 +50,15 @@ def _redact_rm(no_rm: str) -> str:
     if len(no_rm) <= 2:
         return "**"
     return no_rm[:2] + "*" * (len(no_rm) - 2)
+
+
+def _extract_visit_id_from_url(url: str) -> str:
+    """Extract visit ID from Bayar form action URL.
+
+    URL pattern: /daf/px/20/1/0/{visit_id}
+    Returns the last path segment.
+    """
+    return url.rstrip("/").rsplit("/", 1)[-1]
 
 
 async def _extract_visits_from_row(
@@ -118,6 +123,28 @@ async def _extract_visits_from_row(
         ]
         ruang = ruang_lines[0] if ruang_lines else ""
 
+        # Cara Bayar is in second td (index 1): text + Bayar form
+        cara_bayar_raw = (await vcells.nth(1).inner_text()).strip()
+        # Normalize: take first line (may have button text), uppercase
+        cara_bayar_line = cara_bayar_raw.split("\n")[0].strip().upper()
+        # Clean up: ignore header text or empty
+        if not cara_bayar_line or cara_bayar_line in ("CARA BAYAR", "BAYAR"):
+            cara_bayar = "UMUM"
+        else:
+            cara_bayar = cara_bayar_line
+
+        # Extract emr_visit_id and bayar_url from Bayar form action
+        bayar_form = vcells.nth(1).locator("form[action*='/daf/px/20/1/']")
+        bayar_url: str | None = None
+        emr_visit_id = ""
+        if await bayar_form.count() > 0:
+            action = await bayar_form.first.get_attribute("action")
+            if action:
+                bayar_url = action
+                # Extract visit_id from URL: /daf/px/20/1/0/{visit_id}
+                parts = action.rstrip("/").split("/")
+                emr_visit_id = parts[-1] if parts else ""
+
         # Tgl.Masuk is in third td (index 2): "01/01/1990 16:09"
         tgl_masuk_raw = (await vcells.nth(2).inner_text()).strip()
         tgl_kunjungan = _parse_dmy_date(tgl_masuk_raw) or fallback_date
@@ -132,8 +159,11 @@ async def _extract_visits_from_row(
                 tgl_lahir=tgl_lahir,
                 ruang=ruang,
                 tanggal_kunjungan=tgl_kunjungan,
+                cara_bayar=cara_bayar,
+                emr_visit_id=emr_visit_id,
+                bayar_url=bayar_url,
                 total_biaya=Decimal("0.00"),
-                treatments=tuple(),  # v2: populate from detail page
+                treatments=tuple(),
             )
         )
     return visits
@@ -145,7 +175,7 @@ async def extract_visits(
     fallback_date: date | None = None,
     on_progress: ProgressCallback | None = None,
 ) -> list[VisitData]:
-    """Extract all patient visits from the current daftar page.
+    """Extract ALL patient visits from ALL pages of the daftar page.
 
     Args:
         page: Page on /daf/px/1/... after filter applied.
@@ -164,43 +194,102 @@ async def extract_visits(
     if not await is_logged_in(page, selectors):
         raise SessionExpiredError("session expired before extraction")
 
-    table_sel = selectors.daftar.patient_table
-    try:
-        await page.wait_for_selector(table_sel, timeout=10_000)
-    except PlaywrightTimeoutError as exc:
-        raise SelectorNotFoundError(
-            f"patient table not found: {table_sel}"
-        ) from exc
-
-    rows = page.locator(f"{table_sel} > tbody > tr")
-    total = await rows.count()
-    logger.info("extract: found %d rows in patient table", total)
-
-    if on_progress is not None:
-        await on_progress(0, total, "starting extraction")
-
     all_visits: list[VisitData] = []
-    for i in range(total):
-        row = rows.nth(i)
-        try:
-            row_visits = await _extract_visits_from_row(row, fallback_date)
-        except Exception as exc:  # noqa: BLE001
-            logger.warning("extract: row %d failed: %s", i, exc)
-            row_visits = []
+    current_page = 1
+    total_pages = 1  # will be updated after first page
 
-        all_visits.extend(row_visits)
+    while True:
+        # Wait for table on current page
+        table_sel = selectors.daftar.patient_table
+        try:
+            await page.wait_for_selector(table_sel, timeout=10_000)
+        except PlaywrightTimeoutError as exc:
+            raise SelectorNotFoundError(
+                f"patient table not found: {table_sel}"
+            ) from exc
+
+        # Get page indicator to know total pages
+        try:
+            indicator_sel = selectors.daftar_v2.pagination_indicator
+            indicator_el = await page.query_selector(indicator_sel)
+            if indicator_el:
+                indicator_text = (await indicator_el.inner_text()).strip()
+                # Format: "X/Y"
+                if "/" in indicator_text:
+                    parts = indicator_text.split("/")
+                    current_page = int(parts[0].strip())
+                    total_pages = int(parts[1].strip())
+        except Exception:
+            pass  # pagination might not exist for small result sets
+
+        logger.info("extract: page %d/%d", current_page, total_pages)
+
+        # Extract rows from current page
+        rows = page.locator(f"{table_sel} > tbody > tr")
+        total_rows = await rows.count()
+
         if on_progress is not None:
-            label = (
-                f"row {i + 1}/{total}"
-                if not row_visits
-                else f"patient {_redact_rm(row_visits[0].no_rm)}"
-                f" ({len(row_visits)} visits)"
+            await on_progress(
+                0, total_rows, f"halaman {current_page}/{total_pages}"
             )
-            await on_progress(i + 1, total, label)
+
+        for i in range(total_rows):
+            row = rows.nth(i)
+            try:
+                row_visits = await _extract_visits_from_row(row, fallback_date)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("extract: row %d failed: %s", i, exc)
+                row_visits = []
+
+            all_visits.extend(row_visits)
+
+            if on_progress is not None:
+                label = (
+                    f"hal {current_page}/{total_pages} baris {i + 1}/{total_rows}"
+                )
+                await on_progress(i + 1, total_rows, label)
+
+        # Check if there's a next page
+        if current_page >= total_pages:
+            break  # we're on the last page
+
+        # Navigate to next page by submitting the next-page form
+        try:
+            next_form_sel = selectors.daftar_v2.pagination_next_form
+            next_forms = await page.query_selector_all(next_form_sel)
+            if not next_forms:
+                logger.info("extract: no next page form found, stopping")
+                break
+
+            # Submit the next page form and wait for table to reappear
+            prev_page = current_page
+            await next_forms[0].evaluate("form => form.submit()")
+            await page.wait_for_selector(table_sel, timeout=15_000)
+            await page.wait_for_timeout(500)  # brief pause for stability
+
+            # Safety: detect if page didn't actually change
+            try:
+                indicator_el = await page.query_selector(
+                    selectors.daftar_v2.pagination_indicator
+                )
+                if indicator_el:
+                    txt = (await indicator_el.inner_text()).strip()
+                    if "/" in txt:
+                        new_page = int(txt.split("/")[0].strip())
+                        if new_page <= prev_page:
+                            logger.info(
+                                "extract: page did not advance (%d), stopping",
+                                new_page,
+                            )
+                            break
+            except Exception:
+                pass
+
+        except Exception as exc:
+            logger.warning("extract: pagination navigation failed: %s", exc)
+            break
 
     logger.info(
-        "extract: produced %d visit records from %d rows",
-        len(all_visits),
-        total,
+        "extract: total %d visits from %d pages", len(all_visits), total_pages
     )
     return all_visits

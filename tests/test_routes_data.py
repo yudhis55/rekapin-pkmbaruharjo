@@ -35,8 +35,10 @@ async def _seed(client: TestClient) -> None:
         await visit_repo.upsert_visit(
             session,
             visit_repo.VisitInput(
+                emr_visit_id="EMR001",
                 no_rm="RM001", nama="Sample 1", tgl_lahir=date(1990, 1, 1),
                 ruang="POLI UMUM", tanggal_kunjungan=date(2026, 5, 15),
+                cara_bayar="UMUM",
                 total_biaya=Decimal("0.00"),
             ),
             [],
@@ -44,8 +46,10 @@ async def _seed(client: TestClient) -> None:
         await visit_repo.upsert_visit(
             session,
             visit_repo.VisitInput(
+                emr_visit_id="EMR002",
                 no_rm="RM002", nama="Sample 2", tgl_lahir=None,
                 ruang="POLI GIGI", tanggal_kunjungan=date(2026, 5, 16),
+                cara_bayar="BPJS",
                 total_biaya=Decimal("0.00"),
             ),
             [],
@@ -82,6 +86,24 @@ def test_get_visits_with_ruang_filter() -> None:
         data = r.json()
         assert len(data) == 1
         assert data[0]["ruang"] == "POLI GIGI"
+
+
+def test_get_visits_with_cara_bayar_filter() -> None:
+    import asyncio
+    from app.main import create_app
+    app = create_app()
+    with TestClient(app) as client:
+        asyncio.get_event_loop().run_until_complete(_seed(client))
+        r = client.get("/api/visits", params={
+            "tanggal_from": "2026-05-15",
+            "tanggal_to": "2026-05-16",
+            "cara_bayar": "BPJS",
+        })
+        assert r.status_code == 200
+        data = r.json()
+        assert len(data) == 1
+        assert data[0]["cara_bayar"] == "BPJS"
+        assert data[0]["no_rm"] == "RM002"
 
 
 def test_get_visits_range_too_large_returns_422() -> None:

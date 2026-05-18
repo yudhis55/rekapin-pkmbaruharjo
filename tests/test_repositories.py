@@ -36,14 +36,19 @@ def _visit_input(
     ruang: str = "Poli Umum",
     tanggal: date = date(2026, 5, 15),
     biaya: Decimal = Decimal("100000.00"),
+    emr_visit_id: str | None = None,
 ) -> VisitInput:
+    import hashlib
+    _emr_id = emr_visit_id or hashlib.md5(f"{no_rm}_{ruang}_{tanggal}".encode()).hexdigest()[:12]
     return VisitInput(
+        emr_visit_id=_emr_id,
         no_rm=no_rm,
         nama=nama,
         tgl_lahir=date(1990, 1, 1),
         ruang=ruang,
         tanggal_kunjungan=tanggal,
         total_biaya=biaya,
+        cara_bayar="UMUM",
     )
 
 

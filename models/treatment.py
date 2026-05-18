@@ -1,10 +1,11 @@
 """Treatment model: one tindakan + biaya for a visit."""
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, Integer, Numeric, String
+from sqlalchemy import Date, ForeignKey, Integer, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from models.base import Base, TimestampMixin
@@ -24,5 +25,7 @@ class Treatment(Base, TimestampMixin):
     biaya: Mapped[Decimal] = mapped_column(
         Numeric(15, 2), default=Decimal("0.00"), nullable=False,
     )
+    kategori: Mapped[str] = mapped_column(String(20), nullable=False, default="biasa")
+    tanggal: Mapped[date | None] = mapped_column(Date, nullable=True)
 
     visit: Mapped["PatientVisit"] = relationship("PatientVisit", back_populates="treatments")
