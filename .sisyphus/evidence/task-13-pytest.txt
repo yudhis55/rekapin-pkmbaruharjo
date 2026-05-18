@@ -1,0 +1,18 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.11.3, pytest-9.0.3, pluggy-1.6.0 -- C:\PKM\rekap-in\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\PKM\rekap-in
+configfile: pyproject.toml
+plugins: anyio-4.13.0, asyncio-1.3.0, base-url-2.1.0, cov-7.1.0, playwright-0.7.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 7 items
+
+tests/test_extract.py::test_extract_returns_visits_from_fixture PASSED   [ 14%]
+tests/test_extract.py::test_extract_calls_progress_callback_per_row PASSED [ 28%]
+tests/test_extract.py::test_extract_handles_empty_table PASSED           [ 42%]
+tests/test_extract.py::test_extract_raises_when_session_expired PASSED   [ 57%]
+tests/test_extract.py::test_extract_does_not_log_full_rm_or_name PASSED  [ 71%]
+tests/test_extract.py::test_parse_dmy_date_valid PASSED                  [ 85%]
+tests/test_extract.py::test_redact_rm PASSED                             [100%]
+
+============================== 7 passed in 7.57s ==============================

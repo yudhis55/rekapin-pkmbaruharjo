@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="space-y-6">
+
+    <!-- CARD 1: FILTER FORM -->
+    <section class="card" data-card="filter">
+        <h2 class="text-base font-semibold text-ink-900 mb-1">Pilih Tanggal &amp; Ruang</h2>
+        <p class="text-sm text-ink-600 mb-4">Tentukan rentang tanggal dan ruang sebelum mulai scraping.</p>
+
+        <form id="scrape-form" class="space-y-4">
+            <!-- Mode toggle -->
+            <div>
+                <label class="label">Mode Tanggal</label>
+                <div class="inline-flex rounded-lg border border-ink-200 overflow-hidden">
+                    <label class="flex-1">
+                        <input type="radio" name="mode" value="single" class="peer sr-only" checked>
+                        <span class="block px-4 py-2 text-sm cursor-pointer peer-checked:bg-primary-600 peer-checked:text-white text-ink-700 hover:bg-ink-50 peer-checked:hover:bg-primary-700">Tanggal Tunggal</span>
+                    </label>
+                    <label class="flex-1 border-l border-ink-200">
+                        <input type="radio" name="mode" value="range" class="peer sr-only">
+                        <span class="block px-4 py-2 text-sm cursor-pointer peer-checked:bg-primary-600 peer-checked:text-white text-ink-700 hover:bg-ink-50 peer-checked:hover:bg-primary-700">Rentang Tanggal</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Single date -->
+            <div data-mode-single>
+                <label for="tanggal" class="label">Tanggal</label>
+                <input type="date" id="tanggal" name="tanggal" class="input" value="{{ today }}" max="{{ today }}" required>
+            </div>
+
+            <!-- Range -->
+            <div data-mode-range class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="tanggal-from" class="label">Dari</label>
+                    <input type="date" id="tanggal-from" name="tanggal_from" class="input" value="{{ today }}" max="{{ today }}">
+                </div>
+                <div>
+                    <label for="tanggal-to" class="label">Sampai</label>
+                    <input type="date" id="tanggal-to" name="tanggal_to" class="input" value="{{ today }}" max="{{ today }}">
+                </div>
+            </div>
+
+            <!-- Ruang -->
+            <div>
+                <label for="ruang" class="label">Ruang</label>
+                <select id="ruang" name="ruang" class="input">
+                    <option value="">Semua Ruang</option>
+                </select>
+                <p class="text-xs text-ink-400 mt-1">Pilih ruang spesifik atau biarkan kosong untuk semua ruang.</p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex gap-3 pt-2">
+                <button type="submit" id="btn-start" class="btn-primary">
+                    <span class="block">Mulai Scraping</span>
+                </button>
+                <button type="button" id="btn-cancel" class="btn-danger" disabled>
+                    Batalkan
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- CARD 2: PROGRESS (hidden by default) -->
+    <section class="card hidden" data-card="progress" id="progress-card">
+        <div class="flex items-center justify-between mb-3">
+            <h2 class="text-base font-semibold text-ink-900">Status Scraping</h2>
+            <span id="progress-badge" class="badge-info">Menunggu</span>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <div class="flex items-center justify-between text-xs text-ink-600 mb-1">
+                    <span id="progress-label">Mempersiapkan...</span>
+                    <span id="progress-count">0 / 0</span>
+                </div>
+                <div class="w-full bg-ink-100 rounded-full h-2 overflow-hidden">
+                    <div id="progress-bar" class="bg-primary-600 h-2 transition-all" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="bg-ink-50 rounded-lg p-3 max-h-40 overflow-y-auto text-xs font-mono text-ink-700" id="progress-log"></div>
+        </div>
+    </section>
+
+    <!-- CARD 3: PATIENT TABLE -->
+    <section class="card" data-card="visits">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-base font-semibold text-ink-900">Hasil Pasien</h2>
+            <button type="button" id="btn-export" class="btn-secondary" disabled title="Akan tersedia di versi berikutnya">
+                Ekspor Excel
+            </button>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="table-medical" id="visits-table">
+                <thead>
+                    <tr>
+                        <th class="w-24">No. RM</th>
+                        <th>Nama</th>
+                        <th class="w-28">Tgl Lahir</th>
+                        <th class="w-28">Ruang</th>
+                        <th class="w-32">Tgl Kunjungan</th>
+                        <th class="w-32 text-right">Total Biaya</th>
+                    </tr>
+                </thead>
+                <tbody id="visits-tbody">
+                    <tr id="visits-empty">
+                        <td colspan="6" class="text-center text-sm text-ink-400 py-12">
+                            Belum ada data. Klik <span class="font-medium text-ink-700">"Mulai Scraping"</span> untuk memulai.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CARD 4: HISTORY -->
+    <section class="card" data-card="history">
+        <h2 class="text-base font-semibold text-ink-900 mb-1">Riwayat Rekap Harian</h2>
+        <p class="text-sm text-ink-600 mb-4">Klik salah satu tanggal untuk melihat detail kunjungan.</p>
+        <div class="overflow-x-auto">
+            <table class="table-medical" id="recap-table">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th class="text-right">Total Biaya</th>
+                        <th class="text-right w-24">Pasien</th>
+                        <th class="text-right w-24">Tindakan</th>
+                        <th class="w-40">Terakhir Diambil</th>
+                    </tr>
+                </thead>
+                <tbody id="recap-tbody">
+                    <tr id="recap-empty">
+                        <td colspan="5" class="text-center text-sm text-ink-400 py-12">
+                            Belum ada riwayat.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

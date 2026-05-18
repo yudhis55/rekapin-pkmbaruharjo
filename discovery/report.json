@@ -1,0 +1,3856 @@
+{
+  "login_form": {
+    "found": true,
+    "action": "https://emrtrenggalek.my.id/daf",
+    "method": "post",
+    "inputs": [
+      {
+        "tag": "INPUT",
+        "name": "csrf_token_name",
+        "type": "hidden",
+        "id": "",
+        "classes": ""
+      },
+      {
+        "tag": "SELECT",
+        "name": "id_cabang",
+        "type": "select-one",
+        "id": "",
+        "classes": "form-control select2 select2-hidden-accessible"
+      },
+      {
+        "tag": "INPUT",
+        "name": "user",
+        "type": "text",
+        "id": "",
+        "classes": "form-control input-sm"
+      },
+      {
+        "tag": "INPUT",
+        "name": "pass",
+        "type": "password",
+        "id": "",
+        "classes": "form-control input-sm"
+      },
+      {
+        "tag": "INPUT",
+        "name": "login",
+        "type": "hidden",
+        "id": "",
+        "classes": ""
+      },
+      {
+        "tag": "INPUT",
+        "name": "submit",
+        "type": "submit",
+        "id": "",
+        "classes": "btn btn-success btn-sm"
+      },
+      {
+        "tag": "INPUT",
+        "name": "csrf_token_name",
+        "type": "hidden",
+        "id": "",
+        "classes": ""
+      },
+      {
+        "tag": "INPUT",
+        "name": "",
+        "type": "submit",
+        "id": "",
+        "classes": "btn btn-danger btn-sm"
+      }
+    ]
+  },
+  "post_login_url": "https://emrtrenggalek.my.id/daf",
+  "post_login_title": "PENDAFTARAN",
+  "login_success": true,
+  "post_login_links": [
+    {
+      "text": "PENDAFTARAN-",
+      "href": "https://emrtrenggalek.my.id/daf",
+      "classes": ""
+    },
+    {
+      "text": "PENDAFTARAN INDUK",
+      "href": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+      "classes": ""
+    },
+    {
+      "text": "Read the CodeIgniter docs...",
+      "href": "https://codeigniter4.github.io/CodeIgniter4/index.html",
+      "classes": ""
+    }
+  ],
+  "menu_html": null,
+  "pendaftaran_links": [
+    {
+      "text": "PENDAFTARAN-",
+      "href": "https://emrtrenggalek.my.id/daf",
+      "classes": ""
+    },
+    {
+      "text": "PENDAFTARAN INDUK",
+      "href": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+      "classes": ""
+    }
+  ],
+  "pendaftaran_url": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+  "pendaftaran_page_structure": {
+    "forms": [
+      {
+        "action": "https://emrtrenggalek.my.id/daf",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "logout",
+            "type": "submit",
+            "id": "",
+            "classes": "btn btn-sm btn-outline-dark",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "rm",
+            "type": "search",
+            "id": "",
+            "classes": "form-control form-control-sm",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/6/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/7/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/8/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "nik",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "noKartu",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/15/1/374249/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/rp/res/1527262/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "alamat_asal1",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/31/1/374249/1527262",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/2/1/374249/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/374249/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/374249/4191616",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/20/1/0/4191616",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/374249/4191616",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/15/1/308636/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/rp/res/2133462/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "alamat_asal1",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/31/1/308636/2133462",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/2/1/308636/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/308636/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/308636/4191588",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/20/1/0/4191588",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/308636/4191588",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/15/1/270005/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/rp/res/1436499/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "alamat_asal1",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/31/1/270005/1436499",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/2/1/270005/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/270005/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/270005/4191441",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/20/1/0/4191441",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/270005/4191441",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/15/1/776322/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/rp/res/4042995/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "alamat_asal1",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/31/1/776322/4042995",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/2/1/776322/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/776322/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/776322/4191326",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/20/1/0/4191326",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/776322/4191326",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/776322/4191326",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/776322/4191328",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/15/1/114868/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/rp/res/3177601/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "alamat_asal1",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/31/1/114868/3177601",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/2/1/114868/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/114868/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/114868/4191316",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/20/1/0/4191316",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/114868/4191316",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/4/1/114868/4191316",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/30/1/114868/4191320",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "halaman",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "halaman",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "halaman",
+            "type": "number",
+            "id": "",
+            "classes": "form-control form-control-sm",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "halaman",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "halaman",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf",
+        "method": "post",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "csrf_token_name",
+            "type": "hidden",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "btn btn-sm btn-warning",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      },
+      {
+        "action": "https://emrtrenggalek.my.id/daf/px/1/1/0/0",
+        "method": "get",
+        "name": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "text",
+            "id": "",
+            "classes": "",
+            "placeholder": "$1"
+          },
+          {
+            "tag": "INPUT",
+            "name": "",
+            "type": "submit",
+            "id": "",
+            "classes": "",
+            "placeholder": ""
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "PENDAFTARAN- PUSKESMAS BARUHARJO",
+          "",
+          ""
+        ],
+        "hasLinks": true
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2,
+        "firstRowCells": [
+          "No. RM",
+          "",
+          "No. RM Lama",
+          "",
+          "NIK",
+          "",
+          "Nama",
+          "",
+          "Alamat",
+          "",
+          "Ruang",
+          "",
+          "Dokumen",
+          "",
+          "Tanggal"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2,
+        "firstRowCells": [
+          "Warga",
+          "BPJS",
+          "Lainnya",
+          "CEK BANSOS",
+          "",
+          ""
+        ],
+        "hasLinks": true
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table table-sm table-bordered table-hover small",
+        "headers": [],
+        "rowCount": 29,
+        "firstRowCells": [
+          "DATA PASIEN",
+          "DATA KUNJUNGAN"
+        ],
+        "hasLinks": true
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "Ruangan",
+          "Cara Bayar",
+          "Tgl. Masuk",
+          "Batal"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 3,
+        "firstRowCells": [
+          "UGD\n                                                                    \n       ",
+          "UGD",
+          "Pindah",
+          "UMUM                                                                    \n       ",
+          "UMUM",
+          "Bayar\n                                                                          ",
+          "16-05-2026 16:09",
+          "Sdh"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UGD",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UMUM",
+          "Bayar\n                                                                          "
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 3,
+        "firstRowCells": [
+          "UGD\n                                                                    \n       ",
+          "UGD",
+          "Pindah",
+          "BPJS                                                                    \n       ",
+          "BPJS",
+          "Bayar\n                                                                          ",
+          "16-05-2026 15:53",
+          "Sdh"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UGD",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "BPJS",
+          "Bayar\n                                                                          "
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 3,
+        "firstRowCells": [
+          "UGD\n                                                                    \n       ",
+          "UGD",
+          "Pindah",
+          "UMUM                                                                    \n       ",
+          "UMUM",
+          "Bayar\n                                                                          ",
+          "16-05-2026 13:33",
+          "Sdh"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UGD",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UMUM",
+          "Bayar\n                                                                          "
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 6,
+        "firstRowCells": [
+          "UGD\n                                                                    \n       ",
+          "UGD",
+          "Pindah",
+          "BPJS                                                                    \n       ",
+          "BPJS",
+          "Bayar\n                                                                          ",
+          "16-05-2026 09:37",
+          "Sdh"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UGD",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "BPJS",
+          "Bayar\n                                                                          "
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "RAWAT INAP",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "BPJS",
+          "RM"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 6,
+        "firstRowCells": [
+          "UGD\n                                                                    \n       ",
+          "UGD",
+          "Pindah",
+          "BPJS                                                                    \n       ",
+          "BPJS",
+          "Bayar\n                                                                          ",
+          "16-05-2026 09:20",
+          "Sdh"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "UGD",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "BPJS",
+          "Bayar\n                                                                          "
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "RAWAT INAP",
+          "Pindah"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "table-borderless",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "BPJS",
+          "RM"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 1,
+        "firstRowCells": [
+          "",
+          "",
+          "1/3",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "timeline",
+        "headers": [
+          "NAME",
+          "COMPONENT",
+          "DURATION",
+          "0 ms",
+          "35 ms",
+          "70 ms",
+          "105 ms",
+          "140 ms",
+          "175 ms",
+          "210 ms"
+        ],
+        "rowCount": 16,
+        "firstRowCells": [
+          "Connecting to Database: \"default\"",
+          "Database",
+          "0.00 ms",
+          ""
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "timeline",
+        "headers": [],
+        "rowCount": 9,
+        "firstRowCells": [
+          "Controller Constructor",
+          "Timer",
+          "1.29 ms",
+          ""
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "timeline",
+        "headers": [],
+        "rowCount": 6,
+        "firstRowCells": [
+          "View: print_external.php",
+          "Views",
+          "0.05 ms",
+          ""
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 131,
+        "firstRowCells": [
+          "App.php",
+          "APPPATH/Config/App.php"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 8,
+        "firstRowCells": [
+          "Directory:",
+          ""
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "Method",
+          "Route",
+          "Handler"
+        ],
+        "rowCount": 380,
+        "firstRowCells": [
+          "GET",
+          "/",
+          "\\App\\Controllers\\Home::index"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "Time",
+          "Event Name",
+          "Times Called"
+        ],
+        "rowCount": 1,
+        "firstRowCells": [
+          "1.47 ms",
+          "pre_system",
+          "1"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "Action",
+          "Datetime",
+          "Status",
+          "Method",
+          "URL",
+          "Content-Type",
+          "Is AJAX?"
+        ],
+        "rowCount": 20,
+        "firstRowCells": [
+          "Load",
+          "2026-05-16 12:54:27.347855",
+          "200",
+          "GET",
+          "https://emrtrenggalek.my.id/index.php/rp/px/4191719/10/0",
+          "text/html; charset=UTF-8",
+          "No"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "view-data_table",
+        "classes": "",
+        "headers": [
+          "",
+          "0",
+          "id",
+          "1",
+          "kode_kodejenis",
+          "2",
+          "nama",
+          "3",
+          "syarat_daftar",
+          "4",
+          "aktif",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "",
+          "id",
+          "nama",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "",
+          "noid",
+          "id_detail",
+          "ada_daftar",
+          "nama",
+          "no_rm",
+          "no_rm_lama",
+          "no_ktp",
+          "ss_kode",
+          "lahir",
+          "kelamin",
+          "umur",
+          "alamat",
+          "desa",
+          "kecamatan",
+          "kabupaten",
+          "provinsi",
+          "screening_bpjs",
+          "id_asuransi",
+          "asuransi",
+          "no_asuransi",
+          "resiko",
+          "warna",
+          "jml_bpjs",
+          "kunj",
+          "jml_kunj",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "",
+          "id",
+          "id_sep",
+          "waktu",
+          "kunci",
+          "kode_pulang",
+          "luar",
+          "noUrut",
+          "noKunjungan",
+          "ruang",
+          "asuransi",
+          "id_asuransi",
+          "id_dokter",
+          "datang",
+          "rm",
+          "wnr_tbl",
+          "1",
+          "2",
+          "",
+          "id",
+          "id_sep",
+          "waktu",
+          "kunci",
+          "kode_pulang",
+          "luar",
+          "noUrut",
+          "noKunjungan",
+          "ruang",
+          "asuransi",
+          "id_asuransi",
+          "id_dokter",
+          "datang",
+          "rm",
+          "wnr_tbl",
+          "1",
+          "2"
+        ],
+        "rowCount": 66,
+        "firstRowCells": [
+          "tahun_input",
+          "2026"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "",
+          "0",
+          "id",
+          "1",
+          "kode_kodejenis",
+          "2",
+          "nama",
+          "3",
+          "syarat_daftar",
+          "4",
+          "aktif",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "rowCount": 6,
+        "firstRowCells": [],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "",
+          "id",
+          "nama",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23"
+        ],
+        "rowCount": 25,
+        "firstRowCells": [],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "",
+          "noid",
+          "id_detail",
+          "ada_daftar",
+          "nama",
+          "no_rm",
+          "no_rm_lama",
+          "no_ktp",
+          "ss_kode",
+          "lahir",
+          "kelamin",
+          "umur",
+          "alamat",
+          "desa",
+          "kecamatan",
+          "kabupaten",
+          "provinsi",
+          "screening_bpjs",
+          "id_asuransi",
+          "asuransi",
+          "no_asuransi",
+          "resiko",
+          "warna",
+          "jml_bpjs",
+          "kunj",
+          "jml_kunj",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "rowCount": 6,
+        "firstRowCells": [],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "",
+          "id",
+          "id_sep",
+          "waktu",
+          "kunci",
+          "kode_pulang",
+          "luar",
+          "noUrut",
+          "noKunjungan",
+          "ruang",
+          "asuransi",
+          "id_asuransi",
+          "id_dokter",
+          "datang",
+          "rm",
+          "wnr_tbl",
+          "1",
+          "2"
+        ],
+        "rowCount": 3,
+        "firstRowCells": [],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "",
+          "id",
+          "id_sep",
+          "waktu",
+          "kunci",
+          "kode_pulang",
+          "luar",
+          "noUrut",
+          "noKunjungan",
+          "ruang",
+          "asuransi",
+          "id_asuransi",
+          "id_dokter",
+          "datang",
+          "rm",
+          "wnr_tbl",
+          "1",
+          "2"
+        ],
+        "rowCount": 3,
+        "firstRowCells": [],
+        "hasLinks": false
+      },
+      {
+        "id": "session_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 3,
+        "firstRowCells": [
+          "__ci_last_regenerate",
+          "1778936040"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "request_headers_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 23,
+        "firstRowCells": [
+          "Cookie",
+          "ci_session=fh2b339iqmcpp1slq9bnl1vjdj6n7vpd; csrf_cookie_name=3fa0baa2d2ae23b74f"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "cookie_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2,
+        "firstRowCells": [
+          "ci_session",
+          "fh2b339iqmcpp1slq9bnl1vjdj6n7vpd"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "response_headers_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2,
+        "firstRowCells": [
+          "Cache-control",
+          "no-store, max-age=0, no-cache"
+        ],
+        "hasLinks": false
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 8,
+        "firstRowCells": [
+          "CodeIgniter Version:",
+          "4.2.8"
+        ],
+        "hasLinks": false
+      }
+    ],
+    "select2Count": 0,
+    "dateInputs": [
+      {
+        "tag": "INPUT",
+        "name": "tanggal",
+        "type": "date",
+        "id": "",
+        "value": "2026-05-16",
+        "classes": "form-control form-control-sm"
+      }
+    ],
+    "pagination": false,
+    "paginationLinks": [],
+    "title": "PENDAFTARAN",
+    "h1": "PENDAFTARAN- PUSKESMAS BARUHARJO"
+  },
+  "table_links": [
+    {
+      "text": "PENDAFTARAN- PUSKESMAS BARUHARJO",
+      "href": "https://emrtrenggalek.my.id/daf",
+      "onclick": "",
+      "classes": "",
+      "parentRow": "PENDAFTARAN- PUSKESMAS BARUHARJO"
+    }
+  ],
+  "detail_type": "new_page",
+  "detail_url": "https://emrtrenggalek.my.id/daf",
+  "detail_structure": {
+    "tables": [
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 1
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 3
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 1
+      },
+      {
+        "id": "",
+        "classes": "timeline",
+        "headers": [
+          "NAME",
+          "COMPONENT",
+          "DURATION",
+          "0 ms",
+          "20 ms",
+          "40 ms",
+          "60 ms",
+          "80 ms",
+          "100 ms",
+          "120 ms"
+        ],
+        "rowCount": 11
+      },
+      {
+        "id": "",
+        "classes": "timeline",
+        "headers": [],
+        "rowCount": 4
+      },
+      {
+        "id": "",
+        "classes": "timeline",
+        "headers": [],
+        "rowCount": 1
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 130
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 4
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "Method",
+          "Route",
+          "Handler"
+        ],
+        "rowCount": 380
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "Time",
+          "Event Name",
+          "Times Called"
+        ],
+        "rowCount": 1
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [
+          "Action",
+          "Datetime",
+          "Status",
+          "Method",
+          "URL",
+          "Content-Type",
+          "Is AJAX?"
+        ],
+        "rowCount": 20
+      },
+      {
+        "id": "view-data_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2
+      },
+      {
+        "id": "session_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 3
+      },
+      {
+        "id": "request_headers_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 24
+      },
+      {
+        "id": "cookie_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2
+      },
+      {
+        "id": "response_headers_table",
+        "classes": "",
+        "headers": [],
+        "rowCount": 2
+      },
+      {
+        "id": "",
+        "classes": "",
+        "headers": [],
+        "rowCount": 8
+      }
+    ],
+    "hasBiaya": false,
+    "hasTarif": false,
+    "hasTindakan": false,
+    "hasTotal": false,
+    "closeButtons": [],
+    "backLinks": []
+  }
+}

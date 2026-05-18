@@ -1,0 +1,9 @@
+{# Server-side partial - kept minimal; JS renders rows via innerHTML #}
+<tr>
+    <td class="font-mono text-xs">{{ visit.no_rm }}</td>
+    <td>{{ visit.nama }}</td>
+    <td>{{ visit.tgl_lahir }}</td>
+    <td><span class="badge-neutral">{{ visit.ruang }}</span></td>
+    <td>{{ visit.tanggal_kunjungan }}</td>
+    <td class="text-right font-medium">{{ visit.total_biaya }}</td>
+</tr>

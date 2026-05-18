@@ -1,0 +1,88 @@
+# EMR Selectors - Configuration
+# Discovered from live EMR site at https://emrtrenggalek.my.id/daf
+# Discovery date: 2026-05-16
+# Target: PUSKESMAS BARUHARJO (id_cabang=16)
+#
+# Format: each key maps to a CSS selector string.
+
+login:
+  # Form: form[name='form'] with onsubmit="return validasi_input(this)"
+  # POST to https://emrtrenggalek.my.id/daf
+  puskesmas_select: "select[name='id_cabang']"
+  puskesmas_value: "16"  # PUSKESMAS BARUHARJO
+  username_input: "input[name='user']"
+  password_input: "input[name='pass']"
+  submit_button: "input[name='submit'][value='Login']"
+  csrf_token: "input[name='csrf_token_name']"
+  # Hidden field required for login
+  login_hidden: "input[name='login']"
+  # Select2 wraps the native select; use native select_option() for reliability
+  puskesmas_type: "select2_over_native"
+
+dashboard:
+  # After login, page title is "PENDAFTARAN"
+  # Link text "PENDAFTARAN INDUK" navigates to patient list
+  pendaftaran_induk_link: "a[href*='/daf/px/1/1/0/0']"
+  pendaftaran_induk_text: "PENDAFTARAN INDUK"
+  logout_button: "input[name='logout'][value='Keluar']"
+
+daftar:
+  # URL pattern: /daf/px/1/{page}/0/0
+  # Filter row - all in a single table above the patient table
+  search_rm: "input[name='rm'][type='search']"
+  search_no_rm_lama: "input[name='no_rm_lama']"
+  search_nik: "input[name='nik']"
+  search_nama: "input[name='nama']"
+  search_alamat: "input[name='alamat']"
+  ruang_filter: "select[name='id_ruangx']"
+  # Dokumen status filter (options: Semua, Lengkap, Belum Lengkap, Belum diambil)
+  dokumen_filter: "select[name='dokumen']"
+  date_filter: "input[name='tanggal'][type='date']"
+  # Search/apply button (fa-search icon, title="cari")
+  apply_filter_button: "button[title='cari']"
+  # Main patient table
+  patient_table: "table.table-sm.table-bordered.table-hover.small"
+  # Each patient is a <tr> in tbody of the main table
+  patient_row: "table.table-sm.table-bordered.table-hover.small > tbody > tr"
+  # No pagination on this page - all patients for the day shown at once
+  # Detail is NOT a modal - it's form POST navigation to new page
+
+detail:
+  # Patient detail is accessed via "Resume" button (form POST)
+  # URL pattern: /daf/px/15/1/{rm_id}/0
+  resume_button: "form[action*='/daf/px/15/1/'] button"
+  # CPPT (medical record) accessed via form POST
+  # URL pattern: /rp/res/{visit_id}/0/0
+  cppt_button: "form[action*='/rp/res/'] button"
+  # RM button for full medical record view
+  # URL pattern: /daf/px/30/1/{rm_id}/{visit_id}
+  rm_button: "form[action*='/daf/px/30/1/'] button"
+  # Edit patient data
+  # URL pattern: /daf/px/2/1/{rm_id}/0
+  edit_button: "form[action*='/daf/px/2/1/'] button"
+  # Daftar (register visit)
+  # URL pattern: /daf/px/4/1/{rm_id}/0
+  daftar_button: "form[action*='/daf/px/4/1/'] button"
+  # Bayar (payment)
+  # URL pattern: /daf/px/20/1/0/{visit_id}
+  bayar_button: "form[action*='/daf/px/20/1/'] button"
+  # Kunjungan data is INLINE within each patient row (nested table)
+  # Columns: Ruangan, Cara Bayar, Tgl. Masuk, Batal
+  kunjungan_table: "table.table-sm.table-bordered.table-hover.small > tbody > tr > td:last-child > table"
+  # Tindakan table - discovered on CPPT/RM detail pages (form POST navigation)
+  tindakan_table: "table:has-text('Tindakan')"
+  # Biaya field - on Bayar page
+  biaya_field: "form[action*='/daf/px/20/'] button:has-text('Bayar')"
+
+pagination:
+  # NO pagination detected on pendaftaran induk page
+  # All patients for the selected date are shown at once
+  # URL pattern uses /daf/px/1/{page}/0/0 but page param may not be used
+  next_button: null
+  page_indicator: null
+
+session:
+  login_redirect_url_pattern: "**/daf"
+  csrf_token_name: "csrf_token_name"
+  # CSRF token is per-form, included as hidden input in every form
+  # Must be extracted fresh before each POST request
