@@ -43,8 +43,10 @@
     // ----- Helper for export button -----
     function updateExportButton() {
         if (!els.btnExport) return;
-        const hasPlaceholder = els.visitsTbody.querySelector("tr td[colspan]");
-        els.btnExport.disabled = !!hasPlaceholder;
+        // Disable if tbody has no rows OR only has a placeholder (colspan) row
+        const rows = els.visitsTbody.querySelectorAll("tr");
+        const hasRealData = rows.length > 0 && !els.visitsTbody.querySelector("tr td[colspan]");
+        els.btnExport.disabled = !hasRealData;
     }
 
     // ----- Mode toggle -----
@@ -349,19 +351,23 @@
 
     // ----- Export Excel -----
     els.btnExport.addEventListener("click", function () {
-        const mode = els.form.querySelector("input[name='mode']:checked").value;
-        let tanggal;
-        if (mode === "single") {
-            tanggal = document.getElementById("tanggal").value;
-        } else {
-            tanggal = document.getElementById("tanggal-from").value;
+        try {
+            const mode = els.form.querySelector("input[name='mode']:checked").value;
+            let tanggal;
+            if (mode === "single") {
+                tanggal = document.getElementById("tanggal").value;
+            } else {
+                tanggal = document.getElementById("tanggal-from").value;
+            }
+            const caraBayar = document.getElementById("cara_bayar").value;
+            const params = new URLSearchParams({ tanggal: tanggal });
+            if (caraBayar && caraBayar !== "SEMUA") {
+                params.set("cara_bayar", caraBayar);
+            }
+            window.location.href = "/api/export/excel?" + params.toString();
+        } catch (e) {
+            toast("Gagal mengekspor Excel: " + e.message, "error");
         }
-        const caraBayar = document.getElementById("cara_bayar").value;
-        const params = new URLSearchParams({ tanggal: tanggal });
-        if (caraBayar && caraBayar !== "SEMUA") {
-            params.set("cara_bayar", caraBayar);
-        }
-        window.location.href = "/api/export/excel?" + params.toString();
     });
 
     // ----- Init -----
