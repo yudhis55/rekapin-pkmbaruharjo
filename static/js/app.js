@@ -5,6 +5,8 @@
 
     let currentJobId = null;
     let currentEventSource = null;
+    let currentDisplayTanggal = null;
+    let currentDisplayCaraBayar = null;
 
     // ----- DOM -----
     const els = {
@@ -231,6 +233,10 @@
 
     // ----- Visits table -----
     async function loadVisitsForRange(tanggal_from, tanggal_to, ruang) {
+        currentDisplayTanggal = tanggal_from;
+        const cara_bayar_val = document.getElementById("cara_bayar")?.value;
+        currentDisplayCaraBayar = cara_bayar_val || null;
+        
         const params = new URLSearchParams({ tanggal_from });
         if (tanggal_to) params.set("tanggal_to", tanggal_to);
         if (ruang) params.set("ruang", ruang);
@@ -352,14 +358,12 @@
     // ----- Export Excel -----
     els.btnExport.addEventListener("click", function () {
         try {
-            const mode = els.form.querySelector("input[name='mode']:checked").value;
-            let tanggal;
-            if (mode === "single") {
-                tanggal = document.getElementById("tanggal").value;
-            } else {
-                tanggal = document.getElementById("tanggal-from").value;
+            const tanggal = currentDisplayTanggal;
+            if (!tanggal) {
+                toast("Tidak ada data yang ditampilkan untuk diekspor", "warning");
+                return;
             }
-            const caraBayar = document.getElementById("cara_bayar").value;
+            const caraBayar = currentDisplayCaraBayar;
             const params = new URLSearchParams({ tanggal: tanggal });
             if (caraBayar && caraBayar !== "SEMUA") {
                 params.set("cara_bayar", caraBayar);

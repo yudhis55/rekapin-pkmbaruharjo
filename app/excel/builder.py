@@ -24,6 +24,7 @@ from models import PatientVisit
 RUANG_GROUP_KIA_KB_MTBS = {"POLI KIA", "POLI KB", "POLI MTBS"}
 RUANG_GROUP_LABEL = "KIA/KB/MTBS"
 RUANG_VISIT_FEE = 10000  # Fixed fee per ruang visit
+TINDAKAN_RUANGAN_EXCLUDE = {"pelayanan rawat jalan"}
 
 
 def _normalize_ruang_name(ruang: str) -> str:
@@ -62,7 +63,8 @@ def _get_column_groups(
             if t.kategori == "lab":
                 lab_set.add(t.nama_tindakan)
             else:
-                tindakan_set.add(t.nama_tindakan)
+                if t.nama_tindakan.lower().strip() not in TINDAKAN_RUANGAN_EXCLUDE:
+                    tindakan_set.add(t.nama_tindakan)
 
     # Sort for consistent ordering; Umum first, KIA/KB/MTBS next, then alphabetical
     ruang_cols = sorted(ruang_set, key=lambda x: (x != "Umum", x != RUANG_GROUP_LABEL, x))
@@ -79,7 +81,7 @@ def _group_visits_by_patient(
 
     Returns list of patient dicts with:
     - no_rm, nama, tgl_lahir, tanggal_kunjungan
-    - ruang_visits: set of normalized ruang names
+    - ruang: normalized ruang name from FIRST visit
     - lab_treatments: dict {nama_tindakan: biaya}
     - biasa_treatments: dict {nama_tindakan: biaya}
     """
@@ -93,13 +95,12 @@ def _group_visits_by_patient(
                 "nama": visit.nama,
                 "tgl_lahir": visit.tgl_lahir,
                 "tanggal_kunjungan": visit.tanggal_kunjungan,
-                "ruang_visits": set(),
+                "ruang": _normalize_ruang_name(visit.ruang),
                 "lab_treatments": {},
                 "biasa_treatments": {},
             }
 
         p = patients[no_rm]
-        p["ruang_visits"].add(_normalize_ruang_name(visit.ruang))
 
         for t in visit.treatments:
             if t.kategori == "lab":
@@ -108,9 +109,10 @@ def _group_visits_by_patient(
                     p["lab_treatments"].get(t.nama_tindakan, Decimal("0")) + t.biaya
                 )
             else:
-                p["biasa_treatments"][t.nama_tindakan] = (
-                    p["biasa_treatments"].get(t.nama_tindakan, Decimal("0")) + t.biaya
-                )
+                if t.nama_tindakan.lower().strip() not in TINDAKAN_RUANGAN_EXCLUDE:
+                    p["biasa_treatments"][t.nama_tindakan] = (
+                        p["biasa_treatments"].get(t.nama_tindakan, Decimal("0")) + t.biaya
+                    )
 
     return list(patients.values())
 
@@ -226,7 +228,7 @@ def build_rekap_workbook(
 
         # Ruangan columns: 10000 per ruang visited
         for i, ruang in enumerate(ruang_cols):
-            if ruang in patient["ruang_visits"]:
+            if ruang == patient["ruang"]:
                 ws.cell(row=row, column=ruang_start + i, value=RUANG_VISIT_FEE)
 
         # Laboratorium columns
