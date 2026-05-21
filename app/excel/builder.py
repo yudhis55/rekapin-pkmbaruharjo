@@ -2,7 +2,7 @@
 
 Generates Excel matching sample_rekap.xlsx template:
 - 2-row header with merged cells
-- Dynamic columns: Ruangan (per ruang visited) | Laboratorium (lab treatments) | Tindakan (biasa treatments)
+- Dynamic columns: Ruangan (per ruang visited) | Laboratorium (lab treatments) | Tindakan (biasa)
 - 1 row per patient (multiple visits merged)
 - Jumlah column with SUM formula
 - JUMLAH row at bottom with SUM formulas per column
@@ -19,7 +19,6 @@ from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 
 from models import PatientVisit
-
 
 # Ruang groups: these ruang names get merged into one column
 RUANG_GROUP_KIA_KB_MTBS = {"POLI KIA", "POLI KB", "POLI MTBS"}
