@@ -143,3 +143,80 @@ async def test_extract_payment_parses_fixture() -> None:
         assert t.biaya == Decimal("10000")
         assert t.kategori == "biasa"
         assert t.tanggal == date(1990, 1, 1)
+
+
+@pytest.mark.asyncio
+async def test_payment_only_includes_fcd99f_rows() -> None:
+    """Only rows with #FCD99F background are included; transparent rows are skipped."""
+    selectors = load_selectors()
+
+    # HTML with 2 rows: 1 paid (#FCD99F), 1 free (transparent)
+    payment_html = """<html><body>
+    <a href="/daf/px/1/1/0/0">PENDAFTARAN INDUK</a>
+    <table class="table-sm table-bordered" style="">
+        <thead><tr class="table-info"><th>Tanggal</th><th>Nama Tindakan</th>
+        <th>Total</th></tr></thead>
+        <tbody>
+            <tr style="background-color:#FCD99F">
+                <td style="font-size:10px;">01/01/1990 19:02</td>
+                <td>Konsultasi Bayar</td><td>10000</td>
+                <td><form method="post"><input type="submit" value="X"
+                class="btn"></form></td>
+                <td></td>
+            </tr>
+            <tr style="background-color:transparent">
+                <td style="font-size:10px;">02/01/1990 19:02</td>
+                <td>Gratis Tindakan</td><td>5000</td>
+                <td><form method="post"><input type="submit" value="X"
+                class="btn"></form></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="/daf/px/1/1/0/0"><input type="submit" value="Selesai"
+    class="btn btn-warning"></form>
+    </body></html>"""
+
+    async with playwright_browser(headless=True) as (browser, ctx, page):
+        call_count = {"n": 0}
+
+        async def handle(route, request):
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                # First request: daftar page with a Bayar form
+                daftar_html = """<html><body>
+                <form action="https://example.test/daf/px/20/1/0/99999"
+                method="post">
+                    <input name="csrf_token_name" value="test">
+                    <button type="submit">Bayar</button>
+                </form>
+                </body></html>"""
+                await route.fulfill(
+                    status=200, content_type="text/html", body=daftar_html
+                )
+            else:
+                # Subsequent: serve payment page with paid and free rows
+                await route.fulfill(
+                    status=200, content_type="text/html", body=payment_html
+                )
+
+        await ctx.route("**/*", handle)
+        await page.goto(
+            "https://example.test/daf/px/1/1/0/0", wait_until="domcontentloaded"
+        )
+
+        treatments, total = await extract_payment_details(
+            page, selectors, "https://example.test/daf/px/20/1/0/99999"
+        )
+
+        # Only the #FCD99F row should be included
+        names = [t.nama_tindakan for t in treatments]
+        assert "Konsultasi Bayar" in names, (
+            f"Paid row (#FCD99F) should be included, got: {names}"
+        )
+        assert "Gratis Tindakan" not in names, (
+            f"Free row (transparent) should be skipped, got: {names}"
+        )
+        assert total == Decimal("10000"), (
+            f"Total should be 10000 (only paid row), got: {total}"
+        )

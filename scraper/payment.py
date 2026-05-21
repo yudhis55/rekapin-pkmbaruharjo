@@ -103,15 +103,19 @@ async def _parse_tindakan_table(
             if not nama_text or nama_text == "Nama Tindakan":
                 continue
 
-            # Data rows have style="background-color:transparent"
-            # Sub-header rows do NOT have this style — use date presence as filter
+            # Only include rows with background-color:#FCD99F (orange = paid)
+            # Skip rows with transparent background (free/exempt) or rows with Bayar button
             style_attr = await row.get_attribute("style") or ""
-            has_transparent_bg = "background-color" in style_attr and "transparent" in style_attr
+            style_lower = style_attr.lower()
 
-            # If row doesn't have transparent bg and has no parseable date, it's a sub-header
-            parsed_date = _parse_date(tanggal_text)
-            if not has_transparent_bg and not parsed_date:
+            # Check for orange background (paid row)
+            is_paid_row = "#fcd99f" in style_lower
+
+            if not is_paid_row:
                 continue
+
+            # Parse date for paid rows
+            parsed_date = _parse_date(tanggal_text)
 
             # Clean nama_text: remove trailing form button text artifacts (X, bayar)
             nama_clean = re.sub(r"\s*(X|bayar)\s*$", "", nama_text).strip()
