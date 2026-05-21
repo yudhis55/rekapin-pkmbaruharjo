@@ -92,6 +92,17 @@ async def _extract_visits_from_row(
     if not no_rm or not nama:
         return []
 
+    # Skip header rows or placeholder/empty rows that slipped past the
+    # cell-count check (e.g. column-header tr inside <tbody>, or rows
+    # rendered with "-" placeholders).
+    skip_values = {"", "-", "no.", "no", "no. rm", "no rm", "rm", "nama"}
+    if no_rm.lower() in skip_values or nama.lower() in skip_values:
+        return []
+    # RM numbers are always >= 2 chars in practice; anything shorter is
+    # almost certainly a header artefact or placeholder.
+    if len(no_rm) < 2:
+        return []
+
     # Last cell has the nested kunjungan table (border="1")
     last_cell = cells.nth(cell_count - 1)
     nested_table = last_cell.locator("table")

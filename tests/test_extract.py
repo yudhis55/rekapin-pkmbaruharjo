@@ -342,3 +342,74 @@ def test_redact_rm() -> None:
     assert _redact_rm("AB") == "**"
     assert _redact_rm("A") == "**"
     assert _redact_rm("12345") == "12***"
+
+
+@pytest.mark.asyncio
+async def test_extract_skips_empty_no_rm_rows() -> None:
+    """Rows with empty or '-' no_rm/nama (header artefacts) should be skipped."""
+    selectors = load_selectors()
+
+    # HTML with 1 valid patient row and 1 placeholder/header-like row
+    html = """<html><body>
+    <a href="/daf/px/1/1/0/0">PENDAFTARAN INDUK</a>
+    <table class="table table-sm table-bordered table-hover small">
+        <thead><tr><th>No</th><th>No. RM</th><th>Nama</th></tr></thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>RM001<br>Resume</td>
+                <td>Pasien Valid</td>
+                <td>01/01/1990</td>
+                <td>Jl. Test</td>
+                <td>L</td>
+                <td>BPJS</td>
+                <td>Edit</td>
+                <td>Kartu</td>
+                <td>
+                    <table border="1">
+                        <tbody>
+                            <tr>
+                                <td>POLI UMUM</td>
+                                <td>UMUM<form action="/daf/px/20/1/0/12345"
+                                    method="post"><button>Bayar</button></form></td>
+                                <td>01/01/1990 08:00</td>
+                                <td>Sdh</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+    </body></html>"""
+
+    async with playwright_browser(headless=True) as (browser, ctx, page):
+
+        async def handle(route, request):
+            await route.fulfill(status=200, content_type="text/html", body=html)
+
+        await ctx.route("**/*", handle)
+        await page.goto(
+            "https://example.test/daf/px/1/1/0/0", wait_until="domcontentloaded"
+        )
+
+        visits = await extract_visits(
+            page, selectors, fallback_date=date(2026, 5, 20)
+        )
+
+    # Only the valid patient row should yield a visit
+    assert len(visits) == 1, f"Expected 1 visit, got {len(visits)}: {visits}"
+    assert visits[0].no_rm == "RM001"
+    assert visits[0].nama == "Pasien Valid"
