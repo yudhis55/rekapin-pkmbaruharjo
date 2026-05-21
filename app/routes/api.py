@@ -6,11 +6,13 @@ from datetime import date
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sse_starlette.sse import EventSourceResponse
 
 from app.db.repositories import recap_repo, visit_repo
 from app.db.session import get_session
+from app.excel.builder import build_rekap_workbook, workbook_to_bytes
 from app.progress.event_bus import event_bus
 from app.schemas.dto import RecapOut, ScrapeJobOut, ScrapeRequest, VisitOut
 from config.ruang import RUANG_LIST
@@ -117,3 +119,26 @@ async def cancel_scrape_job(job_id: int) -> None:
             status_code=404,
             detail=f"Job {job_id} tidak aktif atau sudah selesai",
         )
+
+
+@router.get("/export/excel")
+async def export_excel(
+    tanggal: date,
+    cara_bayar: Annotated[str | None, Query()] = None,
+    session: AsyncSession = Depends(get_session),
+) -> StreamingResponse:
+    """Export rekap harian as Excel file."""
+    visits = await visit_repo.list_visits(
+        session, tanggal, tanggal, None, cara_bayar,
+    )
+    label = cara_bayar or "SEMUA"
+    wb = build_rekap_workbook(visits, tanggal, label)
+    excel_bytes = workbook_to_bytes(wb)
+    filename = f"rekap_{tanggal}_{label}.xlsx"
+    return StreamingResponse(
+        content=iter([excel_bytes]),
+        media_type=(
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        ),
+        headers={"Content-Disposition": f"attachment; filename={filename}"},
+    )
