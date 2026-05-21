@@ -20,6 +20,7 @@
         progressLog: document.getElementById("progress-log"),
         visitsTbody: document.getElementById("visits-tbody"),
         recapTbody: document.getElementById("recap-tbody"),
+        btnExport: document.getElementById("btn-export"),
         toast: document.getElementById("toast-container"),
     };
 
@@ -37,6 +38,13 @@
         div.textContent = message;
         els.toast.appendChild(div);
         setTimeout(function () { div.remove(); }, 4000);
+    }
+
+    // ----- Helper for export button -----
+    function updateExportButton() {
+        if (!els.btnExport) return;
+        const hasPlaceholder = els.visitsTbody.querySelector("tr td[colspan]");
+        els.btnExport.disabled = !!hasPlaceholder;
     }
 
     // ----- Mode toggle -----
@@ -255,6 +263,7 @@
                 <tr><td colspan="8" class="text-center text-sm text-ink-400 py-12">
                     Tidak ada kunjungan untuk filter ini.
                 </td></tr>`;
+            updateExportButton();
             return;
         }
         const rows = visits.map((v) => {
@@ -292,11 +301,12 @@
                     <td><span class="${cbClass}">${escapeHtml(v.cara_bayar || '')}</span></td>
                     <td>${formatDate(v.tanggal_kunjungan)}</td>
                     <td>${tindakanHtml}</td>
-                    <td class="text-right font-medium">${formatIDR(v.total_biaya)}</td>
+                    <td class="text-right font-medium text-xs">${formatIDR(v.total_biaya || 0)}</td>
                 </tr>
             `;
         }).join("");
         els.visitsTbody.innerHTML = rows;
+        updateExportButton();
     }
 
     // ----- Recap table -----
@@ -336,6 +346,23 @@
             });
         });
     }
+
+    // ----- Export Excel -----
+    els.btnExport.addEventListener("click", function () {
+        const mode = els.form.querySelector("input[name='mode']:checked").value;
+        let tanggal;
+        if (mode === "single") {
+            tanggal = document.getElementById("tanggal").value;
+        } else {
+            tanggal = document.getElementById("tanggal-from").value;
+        }
+        const caraBayar = document.getElementById("cara_bayar").value;
+        const params = new URLSearchParams({ tanggal: tanggal });
+        if (caraBayar && caraBayar !== "SEMUA") {
+            params.set("cara_bayar", caraBayar);
+        }
+        window.location.href = "/api/export/excel?" + params.toString();
+    });
 
     // ----- Init -----
     syncMode();
