@@ -49,7 +49,7 @@ test-results/
 node_modules/
 
 # Build artifacts
-static/css/output.css
+# static/css/output.css
 
 # Sisyphus drafts
 .sisyphus/drafts/
