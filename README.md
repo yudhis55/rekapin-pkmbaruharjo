@@ -164,10 +164,198 @@ server {
 }
 ```
 
+### Opsi C: cPanel Shared Hosting (Setup Python App)
+
+Rekap-In **bisa** berjalan di cPanel shared hosting selama hosting Anda menyediakan Python 3.11 dan system libraries Chromium sudah tersedia di server. Verifikasi dulu dengan menjalankan test di bawah sebelum melanjutkan.
+
+#### Prasyarat — Test di Terminal cPanel
+
+Buka **Terminal** di cPanel (Advanced → Terminal), lalu jalankan:
+
+```bash
+# Test 1: Pastikan Python 3.11 tersedia
+/opt/alt/python311/bin/python3 -V
+# Harus output: Python 3.11.x
+
+# Test 2: Buat venv test dan install Playwright
+/opt/alt/python311/bin/python3 -m venv ~/test-pw
+source ~/test-pw/bin/activate
+pip install playwright
+python -m playwright install chromium
+
+# Test 3: Launch Chromium — ini penentu utama
+python -c "from playwright.sync_api import sync_playwright; p = sync_playwright().start(); b = p.chromium.launch(); print('OK'); b.close(); p.stop()"
+
+# Bersihkan test
+deactivate
+rm -rf ~/test-pw
+```
+
+Jika Test 3 mencetak `OK` → lanjutkan. Jika error → hosting Anda tidak support, gunakan Opsi B (VPS).
+
+---
+
+#### Langkah 1: Upload Kode ke Server
+
+Di terminal cPanel, clone repo ke home directory:
+
+```bash
+cd ~
+git clone <repo-url> rekap-in
+cd rekap-in
+```
+
+Atau upload via **File Manager** cPanel, lalu ekstrak ke folder `rekap-in`.
+
+---
+
+#### Langkah 2: Setup Python App di cPanel
+
+1. Buka cPanel → **Software** → **Setup Python App**
+2. Klik **CREATE APPLICATION**
+3. Isi form:
+   - **Python version**: `3.11.x` (pilih yang tersedia)
+   - **Application root**: `rekap-in`
+   - **Application URL**: pilih domain/subdomain Anda (misal `rekap.namadomain.com` atau `namadomain.com/rekap`)
+   - **Application startup file**: `passenger_wsgi.py`
+   - **Application Entry point**: `application`
+4. Klik **CREATE**
+
+cPanel akan membuat virtualenv otomatis di `~/virtualenv/rekap-in/`.
+
+---
+
+#### Langkah 3: Buat File `passenger_wsgi.py`
+
+File ini diperlukan agar Passenger (web server cPanel) bisa menjalankan FastAPI (ASGI) sebagai WSGI.
+
+Di terminal cPanel:
+
+```bash
+cd ~/rekap-in
+cat > passenger_wsgi.py << 'EOF'
+import sys
+import os
+
+# Pastikan path aplikasi ada di sys.path
+sys.path.insert(0, os.path.dirname(__file__))
+
+# Import ASGI-to-WSGI bridge
+from a2wsgi import ASGIMiddleware
+from app.main import create_app
+
+# Buat FastAPI app dan wrap dengan ASGIMiddleware
+fastapi_app = create_app()
+application = ASGIMiddleware(fastapi_app)
+EOF
+```
+
+---
+
+#### Langkah 4: Install Dependencies
+
+Di terminal cPanel, aktifkan virtualenv yang dibuat cPanel lalu install semua dependencies:
+
+```bash
+# Aktifkan virtualenv cPanel (sesuaikan username dan versi)
+source ~/virtualenv/rekap-in/3.11/bin/activate && cd ~/rekap-in
+
+# Install dependencies aplikasi
+pip install -r requirements.txt
+
+# Install a2wsgi (ASGI-to-WSGI bridge, wajib untuk cPanel)
+pip install a2wsgi
+
+# Install Playwright browser
+python -m playwright install chromium
+```
+
+---
+
+#### Langkah 5: Konfigurasi `.env`
+
+```bash
+cd ~/rekap-in
+cp .env.example .env
+```
+
+Edit file `.env` via File Manager cPanel atau `nano`:
+
+```bash
+nano .env
+```
+
+Isi minimal yang wajib diubah:
+
+```env
+EMR_USERNAME=username_emr_anda
+EMR_PASSWORD=password_emr_anda
+APP_HOST=127.0.0.1
+APP_PORT=8000
+BROWSER_MODE=headless
+```
+
+> **Penting**: `APP_HOST` tetap `127.0.0.1` — Passenger yang handle routing dari luar, bukan uvicorn langsung.
+
+---
+
+#### Langkah 6: Build CSS
+
+```bash
+# Pastikan Node.js tersedia (cek dulu)
+node -v || nodejs -v
+
+# Jika ada, build CSS
+cd ~/rekap-in
+npx tailwindcss -i static/css/input.css -o static/css/output.css --minify
+```
+
+Jika Node.js tidak tersedia di terminal, upload file `static/css/output.css` yang sudah di-build dari komputer lokal via File Manager.
+
+---
+
+#### Langkah 7: Restart Aplikasi
+
+Kembali ke cPanel → **Setup Python App** → klik **RESTART** pada aplikasi Anda.
+
+Atau via terminal:
+
+```bash
+touch ~/rekap-in/tmp/restart.txt
+```
+
+---
+
+#### Langkah 8: Verifikasi
+
+Buka URL aplikasi di browser (sesuai Application URL yang diset di langkah 2). Jika muncul halaman Rekap-In → berhasil.
+
+Jika error, cek log Passenger:
+
+```bash
+tail -50 ~/logs/rekap-in.log
+# atau
+tail -50 ~/rekap-in/logs/passenger.log
+```
+
+---
+
+#### Troubleshooting cPanel
+
+| Error | Penyebab | Solusi |
+|-------|----------|--------|
+| `ModuleNotFoundError: a2wsgi` | a2wsgi belum install | `pip install a2wsgi` di virtualenv cPanel |
+| `Error: Failed to launch browser` | System libs Chromium tidak ada | Hosting tidak support, gunakan VPS |
+| `Internal Server Error` tanpa detail | passenger_wsgi.py salah | Cek log, pastikan `application` terdefinisi |
+| Halaman kosong / CSS tidak muncul | output.css belum ada | Upload `static/css/output.css` dari lokal |
+| `No module named app` | Path salah | Pastikan `sys.path.insert` di passenger_wsgi.py benar |
+
+---
+
 ### Catatan Penting Produksi
-- Gunakan `APP_HOST=0.0.0.0` agar aplikasi bisa diakses dari perangkat lain dalam jaringan lokal.
+- Gunakan `APP_HOST=0.0.0.0` agar aplikasi bisa diakses dari perangkat lain dalam jaringan lokal (khusus VPS/dedicated, bukan cPanel).
 - Pastikan mode browser diatur ke `headless` di `.env`.
-- Instal dependensi sistem untuk Playwright di server:
+- Untuk VPS Linux, install system dependencies Playwright:
   ```bash
   .venv/bin/python -m playwright install chromium --with-deps
   ```
